@@ -3,7 +3,7 @@ package org.dariuscode;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         //multi thread codes goes here
 
@@ -13,9 +13,10 @@ public class Main {
         });
 
         t1.start(); //runnable
-        System.out.println("thread running ended");
 
-        System.out.println("test stash code");
+        //thread join
+        t1.join();
+        System.out.println("thread running ended");
 
     }
 }
