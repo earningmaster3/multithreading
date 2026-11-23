@@ -5,18 +5,23 @@ package org.dariuscode;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
 
-        //multi thread codes goes here
+//yeild thread deligates her/his cpu time to other thread
 
-        System.out.println("hello wolrd");
+
         Thread t1 = new Thread(()->{
-            System.out.println("threa-1 started concurrently ");
+            for(int i=1; i<=10; i++){
+                System.out.println("t1"+ i);
+                Thread.yield();
+            }
         });
+        Thread t2 = new Thread(()->{
+            for(int i=1; i<=10; i++){
+                System.out.println("t1"+ i);
+            }
+        });
+        t1.start();
+        t2.start();
 
-        t1.start(); //runnable
-
-        //thread join
-        t1.join();
-        System.out.println("thread running ended");
 
     }
 }
