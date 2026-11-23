@@ -7,20 +7,33 @@ public class Main {
 
 //yeild thread deligates her/his cpu time to other thread
 
-
         Thread t1 = new Thread(()->{
-            for(int i=1; i<=10; i++){
-                System.out.println("t1"+ i);
-                Thread.yield();
-            }
-        });
-        Thread t2 = new Thread(()->{
-            for(int i=1; i<=10; i++){
-                System.out.println("t1"+ i);
+            while (!Thread.currentThread().isInterrupted()) {
+                System.out.println("understood interption");
+
             }
         });
         t1.start();
+        t1.interrupt();
+
+        Thread t2 = new Thread(()->{
+            try {
+                System.out.println(Thread.currentThread().getName());
+                Thread.sleep(2000);
+            }catch (Exception e){
+
+            }
+        });
+        t2.setName("worker-1");
         t2.start();
+        System.out.println(t2.isAlive());
+
+        try {
+            Thread.sleep(3000);
+        }catch (Exception e){
+
+        }
+        System.out.println(t2.isAlive());
 
 
     }
